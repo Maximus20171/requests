@@ -42,21 +42,21 @@ params1 = {'keywords':'python',
            }
 
 ## функция для определения минимума/максимуму и валюты ЗП
-def salary (cite, salary_str):
+def salary (salary_str):
     min_max_c=[None,None,None]
-    if cite.find('hh') > -1 and salary_str:
+    if salary_str:
         tmp = salary_str.replace('\xa0', ' ')
         k=0
+        tmp1=list(tmp)
+        diap=[x for x in range(48,56)]
         for s in tmp[1:-2]:
             k+=1
-            if (s==' ') and (ord(tmp[k-1]) == 48) and (ord(tmp[k+1]) == 48):
-                tmp[k]='!'
-                print(s.index())
-        #tmp = tmp.replace(' ', '')
-        #if tmp[-1]=='.':
-        #   tmp=tmp[0:-1]
-        print(ord('9'))
-        print('=',tmp)
+            if (s==' ') and (ord(tmp[k-1]) in diap) and (ord(tmp[k+1]) in diap):
+                tmp1[k]='!'
+                tmp=''.join(tmp1)
+                # print(tmp)
+        tmp=tmp.replace('!', '')
+        # print('=',tmp)
         if salary_str[0]=='о':
             min_max_c[2]=salary_str.split()[-1]
             min_max_c[1] = None
@@ -67,7 +67,6 @@ def salary (cite, salary_str):
             min_max_c[0] = None
         elif salary_str.find('-')>-1:
             tmp = tmp.split('-')
-            print(tmp)
             min_max_c[2] = salary_str.split()[-1]
             min_max_c[1] =tmp[1].split()[0]
             min_max_c[0] =tmp[0]
@@ -76,9 +75,6 @@ def salary (cite, salary_str):
             min_max_c[1] =tmp.split()[0]
             min_max_c[0] =tmp.split()[0]
 
-    elif cite.find('superjob') > -1 and salary_str:
-        tmp = salary_str.replace('\xa0', ' ')
-        print(tmp)
     return min_max_c
 
 
@@ -101,9 +97,9 @@ vacancies_list2_sj = vacancies_block_sj.find_all('div',{'class': 'jNMYr GPKTZ _1
 pprint(len(vacancies_list2_sj))
 
 
-st = 'от\xa030\xa0000\xa0руб.'
+st = '130\xa0000 руб.'
 
-k=salary('hh',st )
+k=salary(st)
 print(k)
 
 # 98ая вакансия
