@@ -191,6 +191,5 @@ print()
 #pprint(DataFrame_job)
 
 # Сохраняем файл в вакансий
-b= pd.DataFrame(DataFrame_job)
-b.to_csv('vacancies.csv', index=False)
+pd.DataFrame(DataFrame_job).to_csv('vacancies.csv', index=False, encoding='windows-1251')
 print('Вакансии сохранены в файде vacancies.csv')
