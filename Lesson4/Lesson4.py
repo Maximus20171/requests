@@ -29,7 +29,7 @@ news=dom_lenta.xpath("//div[@class='b-yellow-box__wrap']/div[@class='item']")
 for new in news:
     one_new={}
     one_new['source']= 'lenta.ru'
-    one_new['name'] = new.xpath("./a/text()")[0]
+    one_new['name'] = new.xpath("./a/text()")[0].replace('\xa0',' ')
     one_new['href'] = 'https://lenta.ru/'+new.xpath("./a/@href")[0]
     one_new['time']= new.xpath(".//time[@class='g-time']/@datetime")[0]
     all_news.append(one_new)
